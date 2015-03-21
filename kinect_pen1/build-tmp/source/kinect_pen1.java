@@ -14,7 +14,7 @@ import java.io.InputStream;
 import java.io.OutputStream; 
 import java.io.IOException; 
 
-public class kinect_mini_distance extends PApplet {
+public class kinect_pen1 extends PApplet {
 
 //\u6700\u3082\u8fd1\u3044\u30d4\u30af\u30bb\u30eb\u306b\u4e38\u3092\u8868\u793a\u3059\u308b\u30d7\u30ed\u30b0\u30e9\u30e0
 
@@ -24,6 +24,10 @@ SimpleOpenNI kinect;
 int closeetValue;//\u9577\u3055\u78ba\u8a8d\u7528\u5909\u6570
 int clossetX;//\u6700\u3082\u8ddd\u96e2\u304c\u77ed\u3044\u3068\u304d\u306eX\u5ea7\u6a19\u3092\u683c\u7d0d\u3059\u308b
 int clossetY;//\u6700\u3082\u8ddd\u96e2\u304c\u77ed\u3044\u3068\u304d\u306eY\u5ea7\u6a19\u3092\u683c\u7d0d\u3059\u308b
+
+int previousX;
+int previousY;
+
 
 public void setup(){
 	size(640,480);
@@ -55,14 +59,19 @@ public void draw(){
 		}
 	}
 //\u8ddd\u96e2\u753b\u50cf\u3092\u753b\u9762\u306b\u8868\u793a\u3059\u308b
-image(kinect.depthImage(),0,0);
+//image(kinect.depthImage(),0,0);
+//\u63cf\u753b\u8272\u3092\u8d64\u306b\u3059\u308b
+stroke(255, 0,0);
 
-//\u4fdd\u5b58\u3057\u305f\u5ea7\u6a19\u306e\u4e0a\u306b\u5186\u3092\u63cf\u304f
-fill(255,0,0);
-ellipse(clossetX, clossetY, 25, 25);
+line(previousX,previousY,clossetX,clossetY);//\u30e9\u30a4\u30f3\u3092\u63cf\u753b\u3059\u308b
+
+//\u73fe\u5728\u306e\u6700\u3082\u8fd1\u3044\u70b9\u3092\u65b0\u305f\u306a\u76f4\u524d\u306e\u70b9\u3068\u3057\u3066\u4fdd\u5b58\u3059\u308b
+previousX=clossetX;//\u3053\u3053\u306b\u524d\u56de\u306eprevious\u3092\u6e21\u3059
+previousY=clossetY;
+
 }
   static public void main(String[] passedArgs) {
-    String[] appletArgs = new String[] { "kinect_mini_distance" };
+    String[] appletArgs = new String[] { "kinect_pen1" };
     if (passedArgs != null) {
       PApplet.main(concat(appletArgs, passedArgs));
     } else {

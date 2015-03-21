@@ -7,6 +7,10 @@ int closeetValue;//長さ確認用変数
 int clossetX;//最も距離が短いときのX座標を格納する
 int clossetY;//最も距離が短いときのY座標を格納する
 
+int previousX;
+int previousY;
+
+
 void setup(){
 	size(640,480);
 	kinect = new SimpleOpenNI(this);//kinect をインスタンス化
@@ -37,9 +41,14 @@ void draw(){
 		}
 	}
 //距離画像を画面に表示する
-image(kinect.depthImage(),0,0);
+//image(kinect.depthImage(),0,0);
+//描画色を赤にする
+stroke(255, 0,0);
 
-//保存した座標の上に円を描く
-fill(255,0,0);
-ellipse(clossetX, clossetY, 25, 25);
+line(previousX,previousY,clossetX,clossetY);//ラインを描画する
+
+//現在の最も近い点を新たな直前の点として保存する
+previousX=clossetX;//ここに前回のpreviousを渡す
+previousY=clossetY;
+
 }
