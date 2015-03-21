@@ -28,8 +28,8 @@ void mousePressed()
 	int clickPosition = mouseX + (mouseY * 640);//1次元の配列から、マウスの位置の値を計算する
 	int clickDepth = depthValuew[clickPosition];//クリックしたポジションの配列の数を取り出す。mmで出てきている
 	float inches = clickDepth /25.4;//インチに直すため、25.4で割る
+	println("inches: "+inches + "   millimeter: " + clickDepth);//それぞれをコンソールに表示させる.
 
-	println("inches: "+inches + "   millimeter: " + clickDepth);
 
 
 }
